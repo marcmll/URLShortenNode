@@ -2,27 +2,28 @@ doctype html
 html(lang='en')
 	head
 		meta(charset='UTF-8')
-		title URLShortenNode
+		title URLShortenNode &raquo; stats
 		// CSS
 		link(rel='stylesheet', type='text/css', href='/css/normalize.css')
 		link(rel='stylesheet', type='text/css', href='/css/skeleton.css')
-		link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:300,400,700')
+		link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700')
 		link(rel='stylesheet', type='text/css', href='/css/style.css')
 		// JS
-		script(rel='preload', src='/js/jquery.min.js')
-		script(rel='preload', src='/js/createLink.js')
+		// script(rel='preload', src='/js/jquery.min.js')
+		// script(rel='preload', src='/js/createLink.js')
 		// Meta Tags
 		meta(name='viewport', content='width=device-width, initial-scale=1 user-scalable=no')
 	body
 		// Body Content
 		.container
-			.row
-				h1 URL Shortener
-				p Insert a link below to have it shortened!
-				input.u-full-width.linkInput(type='text', placeholder='Link')
-				button.u-full-width.label-body.button-primary(onClick='createLink()') Shorten
-				if error
-					p.error!= error
+			.row.statsPage
+				h1 URL Stats
+				.row
+					a.bold(href=shortUrl)!= shortDisplayUrl
+				p Times this url has been visited: 
+					b!= stats
+				p Original link: 
+					a(href=shortUrl)!= url
 				.footer
 					hr
 					p Made by 

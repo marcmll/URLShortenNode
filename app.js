@@ -26,7 +26,6 @@ app.set('view engine', 'pug');
 app.get('/', function (req, res) {
 
 	var passedVariable = req.query.error;
-	console.log(passedVariable);
 	if(passedVariable && passedVariable != 'undefinded' && passedVariable == 'notFound') {
 		res.render('index', { 'error' : `The link you entered is invalid and can't be found in our database` } );
 	} else {
@@ -53,6 +52,8 @@ app.post('/addLink', function(req, res, next) {
 	    client.get(id, function(err, reply) {
 		    if (reply == '' || reply == null) {
 		    	client.set(id, link, function(err, reply) {
+		    		var stats = id + 'stats';
+		    		client.set(stats, 0);
 		    		console.log(reply);
 		    		console.log(id);
 		    		var data = {
@@ -74,12 +75,39 @@ app.post('/addLink', function(req, res, next) {
 // Get ID
 app.get('/:id', function(req, res, next) {
 
-    var id = req.params.id;
+    var id = req.params.id,
+    	stats = id + 'stats';
 
     client.get(id, function(err, reply) {
 	    if(reply != '' && reply != null && reply != 'nil') {
+	    	client.incr(stats);
 	    	console.log(reply);
 	    	res.redirect(reply);
+	    } else {
+	    	res.redirect('/?error=notFound');
+	    }
+	});
+
+});
+
+// Get Stats
+app.get('/:id/stats', function(req, res, next) {
+
+    var id = req.params.id,
+    	stats = id + 'stats',
+    	shortUrl = '/' + id,
+    	shortDisplayUrl = 'localhost:3000/' + id;
+
+    client.get(id, function(err, idReply) {
+	    if(idReply != '' && idReply != null && idReply != 'nil') {
+	    	client.get(stats, function(err, statsReply) {
+			    if(statsReply != '' && statsReply != null && statsReply != 'nil') {
+			    	console.log(statsReply);
+			    	res.render('stats', { shortUrl: shortUrl, shortDisplayUrl: shortDisplayUrl, url: idReply, stats: statsReply });
+			    } else {
+			    	res.redirect('/?error=notFound');
+			    }
+			});
 	    } else {
 	    	res.redirect('/?error=notFound');
 	    }

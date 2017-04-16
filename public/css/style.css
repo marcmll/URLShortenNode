@@ -57,6 +57,33 @@ p.error {
 	color: #E74C3C;
 }
 
+/* Stats Page */
+
+.statsPage h1 {
+	margin-bottom: 10px;
+}
+
+.statsPage a {
+	display: inline-block;
+	margin: 0 0 10px 0;
+}
+
+.statsPage a.bold {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	margin: 0 0 10px 0;
+	padding: 5px 8px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	background-color: #F7F7F7;
+}
+
+.statsPage p {
+	display: inline-block;
+	margin: 0 0 10px 0;
+}
+
 /* Footer */
 
 .footer {
@@ -74,6 +101,7 @@ p.error {
 	}
 
 	.footer p {
+		width: 100%;
 		font-size: 12px;
 		font-weight: 400;
 		color: #777;

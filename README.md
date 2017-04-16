@@ -8,13 +8,13 @@ I am not yet sure if this project will remain in its current form, or if I will 
 Usage:
 -
 The usage of this project requires you to have [npm](https://www.npmjs.com/get-npm) and [Redis](https://redis.io/download) installed.
-When having installed both, the first step is installing all the necessary node modules, required to run this project properly. To do so, navigate to the project folder using your commandline and type:
+When having installed both, the first step is installing all the necessary node modules, required to run this project properly. To do so, navigate to the project folder using your command line and type:
 
 ```
 npm install
 ```
 
-Now that we have all the modules installed we can go ahead and start Redis in another commandline tab with the following command:
+Now that we have all the modules installed we can go ahead and start the Redis server in another command line tab, navigating to the Redis folder, typing in the following:
 
 ```
 src/redis-server
@@ -27,6 +27,13 @@ node app.js
 ```
 
 You can now view the project by opening your browser and typing in ```localhost:3000```
+
+Stats:
+-
+In addition to shortening link, I have also included the "stats" feature. This allows you to see how often the shortened link has been visited. To view the stats for a link, just type in the shortened link adding ```/stats``` to the end of it. You will be brought to a page that shows you:
+- The shortened link
+- The amount of times that this has been visitied
+- The original link
 
 ---
 
