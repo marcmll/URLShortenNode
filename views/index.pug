@@ -17,6 +17,8 @@ html(lang='en')
 				p Insert a link below to have it shortened!
 				input.u-full-width.linkInput(type='text', placeholder='Link')
 				button.u-full-width.label-body.button-primary(onClick='createLink()') Shorten
+				if error
+					p.error!= error
 				.footer
 					hr
 					p Made by 

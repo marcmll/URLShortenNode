@@ -44,18 +44,21 @@ button {
 	opacity: 0;
 }
 
+/* Container */
+
 .container {
 	max-width: 550px;
 	position: relative;
-	top: 47%;
-	-webkit-transform: translateY(-47%);
-	transform: translateY(-47%);
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
-/* ClassName */
+/* Error */
 
-
-
+p.error {
+	color: #E74C3C;
+}
 
 /* Footer */
 

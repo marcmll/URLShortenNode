@@ -12,6 +12,8 @@ function createLink() {
 			success:function(response) {
 
 				console.log(response);
+				$('.linkInput').css('border', '1px solid #33C3F0');
+				$('.linkInput').css('color', '#33C3F0');
 				$('.linkInput').val('localhost:3000/' + response.id);
 
 			}

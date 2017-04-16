@@ -24,7 +24,16 @@ app.set('view engine', 'pug');
 
 // Index
 app.get('/', function (req, res) {
-	res.render('index');
+
+	var passedVariable = req.query.error;
+	console.log(passedVariable);
+	if(passedVariable && passedVariable != 'undefinded' && passedVariable == 'notFound') {
+		res.render('index', { 'error' : `The link you entered is invalid and can't be found in our database` } );
+	} else {
+		res.render('index');
+	}
+
+	
 })
 
 // Post ID + Link
@@ -68,12 +77,11 @@ app.get('/:id', function(req, res, next) {
     var id = req.params.id;
 
     client.get(id, function(err, reply) {
-	    if(reply != '' && reply != '') {
+	    if(reply != '' && reply != null && reply != 'nil') {
 	    	console.log(reply);
 	    	res.redirect(reply);
 	    } else {
-	    	console.log('Error...');
-	    	console.log(reply);
+	    	res.redirect('/?error=notFound');
 	    }
 	});
 
