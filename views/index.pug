@@ -6,7 +6,11 @@ html(lang='en')
 		// CSS
 		link(rel='stylesheet', type='text/css', href='css/normalize.css')
 		link(rel='stylesheet', type='text/css', href='css/skeleton.css')
+		link(rel='preload' href='https://fonts.googleapis.com/css?family=Montserrat:300,400,700')
 		link(rel='stylesheet', type='text/css', href='css/style.css')
+		// JS
+		script(rel='preload', src='/js/jquery.min.js')
+		script(rel='preload', src='/js/createLink.js')
 		// Meta Tags
 		meta(name='viewport', content='width=device-width, initial-scale=1 user-scalable=no')
 	body
@@ -23,6 +27,3 @@ html(lang='en')
 					hr
 					p Made by 
 						a(target='blank_', href='http://github.com/seven11nash') @seven11nash
-		// JS
-		script(src='/js/jquery.min.js')
-		script(src='/js/createLink.js')
