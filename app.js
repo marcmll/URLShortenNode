@@ -49,11 +49,9 @@ app.post('/addLink', function(req, res, next) {
 	    	id += possible.charAt(Math.floor(Math.random() * possible.length));
 	    }
 
-	    client.get(id, function(err, reply) {
+	    client.hget(id, function(err, reply) {
 		    if (reply == '' || reply == null) {
-		    	client.set(id, link, function(err, reply) {
-		    		var stats = id + 'stats';
-		    		client.set(stats, 0);
+		    	client.hmset(id, 'shortLink', 'localhost:3000/' + id, 'originalLink', link, 'statId', id + 'stats', 'visited', 0, function(err, reply) {
 		    		console.log(reply);
 		    		console.log(id);
 		    		var data = {
@@ -75,12 +73,11 @@ app.post('/addLink', function(req, res, next) {
 // Get ID
 app.get('/:id', function(req, res, next) {
 
-    var id = req.params.id,
-    	stats = id + 'stats';
+    var id = req.params.id;
 
-    client.get(id, function(err, reply) {
+    client.hget(id, 'originalLink', function(err, reply) {
 	    if(reply != '' && reply != null && reply != 'nil') {
-	    	client.incr(stats);
+	    	client.hincrby(id, 'visited', 1);
 	    	console.log(reply);
 	    	res.redirect(reply);
 	    } else {
@@ -94,20 +91,12 @@ app.get('/:id', function(req, res, next) {
 app.get('/:id/stats', function(req, res, next) {
 
     var id = req.params.id,
-    	stats = id + 'stats',
-    	shortUrl = '/' + id,
-    	shortDisplayUrl = 'localhost:3000/' + id;
+    	shortUrl = '/' + id;
 
-    client.get(id, function(err, idReply) {
-	    if(idReply != '' && idReply != null && idReply != 'nil') {
-	    	client.get(stats, function(err, statsReply) {
-			    if(statsReply != '' && statsReply != null && statsReply != 'nil') {
-			    	console.log(statsReply);
-			    	res.render('stats', { shortUrl: shortUrl, shortDisplayUrl: shortDisplayUrl, url: idReply, stats: statsReply });
-			    } else {
-			    	res.redirect('/?error=notFound');
-			    }
-			});
+    client.hmget(id, 'shortLink', 'originalLink', 'visited', function(err, reply) {
+	    if(reply != '' && reply != null && reply != 'nil') {
+	    	console.log(reply);
+	    	res.render('stats', { shortUrl: shortUrl, shortDisplayUrl: reply[0], url: reply[1], stats: reply[2] });
 	    } else {
 	    	res.redirect('/?error=notFound');
 	    }
