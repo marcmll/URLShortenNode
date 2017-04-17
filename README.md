@@ -23,7 +23,7 @@ src/redis-server
 Finally, to get the project going, in the first tab you used, type:
 
 ```
-node app.js
+nodemon .
 ```
 
 You can now view the project by opening your browser and typing in ```localhost:3000```
