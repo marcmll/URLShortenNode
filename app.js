@@ -12,11 +12,15 @@ client.on("error", function (err) {
 
 // Static Files
 app.use(express.static('public'));
+
 // Parser
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
+
+// Port
+var port = process.env.PORT || 8080;
 
 // Views und pug templating
 app.set('views', './views');
@@ -105,9 +109,6 @@ app.get('/:id/stats', function(req, res, next) {
 });
  
 // Listen
-var server = app.listen(3000, function() {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log("App listening at http://%s:%s", host, port);
-});
+// Listen
+app.listen(port);
+console.log('Magic happens on port ' + port);

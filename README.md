@@ -26,7 +26,7 @@ Finally, to get the project going, in the first tab you used, type:
 nodemon .
 ```
 
-You can now view the project by opening your browser and typing in ```localhost:3000```
+You can now view the project by opening your browser and typing in ```localhost:8080```
 
 Stats:
 -
