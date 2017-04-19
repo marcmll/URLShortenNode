@@ -55,7 +55,7 @@ app.post('/addLink', function(req, res, next) {
 
 	    client.hget(id, function(err, reply) {
 		    if (reply == '' || reply == null) {
-		    	client.hmset(id, 'shortLink', 'localhost:8080/' + id, 'originalLink', link, 'statId', id + 'stats', 'visited', 0, function(err, reply) {
+		    	client.hmset(id, 'shortLink', 'localhost:' + port + '/' + id, 'originalLink', link, 'statId', id + 'stats', 'visited', 0, function(err, reply) {
 		    		console.log(reply);
 		    		console.log(id);
 		    		var data = {
