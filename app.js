@@ -19,6 +19,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+// Port
+var port = process.env.PORT || 8080;
+
 // Views und pug templating
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -105,4 +108,6 @@ app.get('/:id/stats', function(req, res, next) {
 
 });
 
-module.exports = app;
+// Listen
+app.listen(port);
+console.log('Magic happens on port ' + port);
