@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Port
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 80;
 
 // Views und pug templating
 app.set('views', './views');
