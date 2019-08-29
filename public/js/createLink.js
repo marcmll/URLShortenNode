@@ -14,7 +14,7 @@ function createLink() {
 				console.log(response);
 				$('.linkInput').css('border', '1px solid #33C3F0');
 				$('.linkInput').css('color', '#33C3F0');
-				$('.linkInput').val('localhost:8080/' + response.id);
+				$('.linkInput').val('http://3.120.183.241/' + response.id);
 
 			}
 		});
