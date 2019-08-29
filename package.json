@@ -4,14 +4,12 @@
   "description": "URL Shortener built with Node.js and Redis",
   "main": "app.js",
   "scripts": {
-    "start": "DEBUG=app:* nodemon ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "seven11nash",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
-    "debug": "^2.6.9",
-    "dotenv": "^5.0.1",
     "express": "^4.15.2",
     "nodemon": "^1.11.0",
     "pug": "^2.0.0-beta11",
